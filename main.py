@@ -14,12 +14,12 @@ BLUE = (70, 130, 180)
 GREEN = (60, 179, 113)
 RED = (220, 20, 60)
 
-font = pygame.font.Font(None, 48)
+font = pygame.font.Font(None, 40)
 
 # Поле для рублей
-rubles_rect = pygame.Rect(screen_width // 9, screen_width // 9, screen_width * 7 // 9, screen_width // 6)
+rubles_rect = pygame.Rect(screen_width * 4 // 9, screen_width // 9, screen_width * 4 // 9, screen_width // 6)
 # Поле для курса
-rate_rect = pygame.Rect(screen_width // 9, screen_width * 5 // 9, screen_width * 7 // 9, screen_width // 6)
+rate_rect = pygame.Rect(screen_width * 4 // 9, screen_width * 5 // 9, screen_width * 4 // 9, screen_width // 6)
 # Кнопка конвертации
 button_rect = pygame.Rect(screen_width * 2 // 9, screen_width * 3 // 9, screen_width * 5 // 9, screen_width // 6)
 
@@ -30,15 +30,27 @@ while running:
             running = False
 
     screen.fill(BLACK)
-    # Рисуем поля ввода (белые прямоугольники с черной рамкой)
+    # Рисуем поля ввода
     pygame.draw.rect(screen, BLACK, rubles_rect)
     pygame.draw.rect(screen, WHITE, rubles_rect, 2)
 
     pygame.draw.rect(screen, BLACK, rate_rect)
     pygame.draw.rect(screen, WHITE, rate_rect, 2)
 
-    # Рисуем кнопку (синий прямоугольник)
+    # Рисуем кнопку
     pygame.draw.rect(screen, (0, 100, 200), button_rect)
+
+    # Метка для рублей
+    rubles_label = font.render("Рубли:", True, WHITE)
+    screen.blit(rubles_label, (screen_width // 9, screen_width // 9 + 30))
+
+    # Метка для курса
+    rate_label = font.render("Курс:", True, WHITE)
+    screen.blit(rate_label, (screen_width // 9, screen_width * 5 // 9 + 30))
+
+    # Текст на кнопке
+    button_text = font.render("Конвертировать", True, WHITE)
+    screen.blit(button_text, (screen_width * 2 // 9 + 55, screen_width * 3 // 9 + 35))
 
     pygame.display.flip()
 
